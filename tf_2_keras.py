@@ -8,9 +8,13 @@ with tf.Session() as sess:
   new_saver = tf.train.import_meta_graph('trained_models/char_level_cnn.meta')
   new_saver.restore(sess, tf.train.latest_checkpoint('./trained_models'))
 
-  vars = tf.trainable_variables()
-  print(vars) #some infos about variables...
+  # vars = tf.trainable_variables()
+  # print(vars) #some infos about variables...
   # vars_vals = sess.run(vars)
   # for var, val in zip(vars, vars_vals):
-  #   print("var: {}, value: {}".format(var.name, val))
-​tvars = tf.trainable_variables()
+
+  tvars = tf.trainable_variables()
+  tvars_vals = sess.run(tvars)
+
+  for var, val in zip(tvars, tvars_vals):
+      print(var.name, val)
